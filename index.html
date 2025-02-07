@@ -50,6 +50,11 @@
             background-color: #f9f9f9;
             min-height: 50px;
         }
+        .loading {
+            font-size: 18px;
+            font-weight: bold;
+            color: #888;
+        }
     </style>
 </head>
 <body>
@@ -63,7 +68,7 @@
         <!-- <option value="http://107.172.3.119:5002/api/Groq">Groq AI</option> -->
     </select>
     <input type="text" id="messageInput" placeholder="Enter your Image Type...">
-    <button onclick="sendMessage()">Submit</button>
+    <button onclick="sendMessage()">Generate</button>
 
     <div class="result-box" id="resultBox">
         <!-- Response will be shown here -->
@@ -80,6 +85,9 @@
             resultBox.textContent = "Please enter a message.";
             return;
         }
+
+        // Show loading state
+        resultBox.innerHTML = '<div class="loading">Please wait...<br>សូមរងចាំ...<br>Loading...</div>';
 
         try {
             const response = await fetch(apiUrl, {
